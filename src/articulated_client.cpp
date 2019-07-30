@@ -17,12 +17,12 @@ int main (int argc, char **argv)
 	ROS_INFO("Action server started");
 	ROS_INFO("sending goal.");
 
-	float x_goal[4] = {0.195, 0.15, 0.165, 0.15};
-	float y_goal[4] = {0.0, 0.085, 0.035, 0.1};
-	float z_goal[4] = {0.0, 0.0, 0.0, 0.0};
+	float x_goal[4] = {0.195, 0.165, 0.15, 0.165};
+	float y_goal[4] = {0.0, 0.035, 0.085, 0.035};
+	float z_goal[4] = {0.0, 0.5, 0.5, 0.0};
 	while (ros::ok())
 	{
-		for (int i = 0; i < 3; i ++)
+		for (int i = 0; i < 4; i ++)
 		{
 		// send a goal to the action
 			articulated_client::ikGoal goal;
