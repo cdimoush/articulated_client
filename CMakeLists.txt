@@ -64,7 +64,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate actions in the 'action' folder
 add_action_files(
   DIRECTORY action
-  FILES ik.action calibrate.action
+  FILES ik.action calibrate.action gripper.action
 )
 
 ## Generate added messages and services with any dependencies listed here
@@ -126,6 +126,9 @@ target_link_libraries(articulated_client ${catkin_LIBRARIES})
 
 add_executable(calibrate src/calibrate.cpp)
 target_link_libraries(calibrate ${catkin_LIBRARIES})
+
+add_executable(gripper src/toggle_gripper.cpp)
+target_link_libraries(gripper ${catkin_LIBRARIES})
 
 #############
 ## Install ##

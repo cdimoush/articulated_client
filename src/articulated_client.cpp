@@ -24,7 +24,7 @@ int main (int argc, char **argv)
 	{
 		for (int i = 0; i < 10; i ++)
 		{
-		// send a goal to the action
+			// send a goal to the action
 			articulated_client::ikGoal goal;
 			goal.x = 0.165;
 			goal.y = 0.005*i + 0.025;
