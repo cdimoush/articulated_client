@@ -17,18 +17,19 @@ int main (int argc, char **argv)
 	ROS_INFO("Action server started");
 	ROS_INFO("sending goal.");
 
-	float x_goal[3] = {0.185, 0.165, 0.165};
-	float y_goal[3] = {0.05, 0.05, 0.075};
-	float z_goal[3] = {0.0, 0.0, 0.0};
+	float x_goal[4] = {0.195, 0.165, 0.15, 0.165};
+	float y_goal[4] = {0.0, 0.035, 0.085, 0.035};
+	float z_goal[4] = {0.0, 0.5, 0.5, 0.0};
 	while (ros::ok())
 	{
-		for (int i = 0; i < 10; i ++)
+		for (int i = 0; i < 4; i ++)
 		{
 			// send a goal to the action
 			articulated_client::ikGoal goal;
-			goal.x = 0.165;
-			goal.y = 0.005*i + 0.025;
-			goal.z = 0;
+			ROS_ERROR_STREAM("X: " << x_goal[i] << ", Y: " << y_goal[i]);
+			goal.x = x_goal[i];
+			goal.y = y_goal[i];
+			goal.z = z_goal[i];
 			ac.sendGoal(goal);
 
 			bool finished_before_timeout = ac.waitForResult(ros::Duration(30.0));
@@ -42,7 +43,7 @@ int main (int argc, char **argv)
 				ROS_INFO("Action did not finish before the time out.");
 
 
-			ros::Rate r(1);
+			ros::Rate r(3);
 			r.sleep();
 		}
 	}
