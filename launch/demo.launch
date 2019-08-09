@@ -1,0 +1,6 @@
+<launch>
+	<rosparam command="load" file="$(find articulated_client)/config/demo.yaml" ns="demo"/>
+
+	<node name="demo_client" pkg="articulated_client" type="demo" output="screen" />
+	<node name="demo_visualizer" pkg="articulated_client" type="demo_rviz" output="screen" />
+</launch>

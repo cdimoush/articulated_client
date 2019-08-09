@@ -119,11 +119,18 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
 add_executable(articulated_client src/articulated_client.cpp)
 target_link_libraries(articulated_client ${catkin_LIBRARIES})
+
+add_executable(demo src/demo.cpp)
+target_link_libraries(demo ${catkin_LIBRARIES})
+
+add_executable(demo_rviz src/demo_rviz.cpp)
+target_link_libraries(demo_rviz ${catkin_LIBRARIES})
 
 add_executable(calibrate src/calibrate.cpp)
 target_link_libraries(calibrate ${catkin_LIBRARIES})

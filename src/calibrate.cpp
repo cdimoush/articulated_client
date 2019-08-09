@@ -18,73 +18,8 @@
 #define KEYCODE_TAB 0x09
 
 
-int kfd = 0;
-struct termios cooked, raw;
 //Add publisher (consider msg types)4
 ros::Publisher cal_pub;
-
-
-void keyLoop()
-{
-  char c;
-  bool dirty=false;
-
-  // get the console in raw mode                                                              
-  tcgetattr(kfd, &cooked);
-  memcpy(&raw, &cooked, sizeof(struct termios));
-  raw.c_lflag &=~ (ICANON | ECHO);
-  // Setting a new line, then end of file                         
-  raw.c_cc[VEOL] = 1;
-  raw.c_cc[VEOF] = 2;
-  tcsetattr(kfd, TCSANOW, &raw);
-
-  puts("Reading from keyboard");
-  puts("---------------------------");
-  puts("Use arrow keys to move the turtle.");
-
-
-  for(;;)
-  {
-    // get the next event from the keyboard  
-    if(read(kfd, &c, 1) < 0)
-    {
-      perror("read():");
-      exit(-1);
-    }
-
-    switch(c)
-    {
-      case KEYCODE_L:
-        ROS_ERROR_STREAM("LEFT");
-        dirty = true;
-        break;
-      case KEYCODE_R:
-        ROS_ERROR_STREAM("RIGHT");
-        dirty = true;
-        break;
-      case KEYCODE_TAB:
-        ROS_ERROR_STREAM("TAB");
-        dirty = true;
-        break;
-    }
-   
-    if(dirty ==true)
-    {
-      dirty=false;
-    }
-  }
-
-
-  return;
-}
-
-void quit(int sig)
-{
-  (void)sig;
-  tcsetattr(kfd, TCSANOW, &cooked);
-  ros::shutdown();
-  exit(0);
-}
 
 int main (int argc, char **argv)
 {
@@ -102,11 +37,6 @@ int main (int argc, char **argv)
     //Send empty goal to start
     articulated_client::calibrateGoal goal;
     ac.sendGoal(goal);
-
-    
-    //signal(SIGINT,quit); //link to quit for ctr c exit
-
-    //  keyLoop(); //go to listener
 
   bool finished_before_timeout = ac.waitForResult();
 
