@@ -1,7 +1,7 @@
-block/x: 0.15
-block/y: 0
-block/z: 0.05
-block/dimension: 0.025 #Assume cube for now
+block/x: 0.215
+block/y: 0.015 
+block/z: 0.15
+block/dimension: 0.03 #Assume cube for now
 bucket/x: 0.2
 bucket/y: 0
 bucket/z: 0.25

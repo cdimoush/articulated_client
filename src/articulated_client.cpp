@@ -1,3 +1,4 @@
+
 #include <ros/ros.h>
 
 #include <actionlib/client/simple_action_client.h>
@@ -17,9 +18,9 @@ int main (int argc, char **argv)
 	ROS_INFO("Action server started");
 	ROS_INFO("sending goal.");
 
-	float x_goal[4] = {0.195, 0.165, 0.15, 0.165};
-	float y_goal[4] = {0.0, 0.035, 0.085, 0.035};
-	float z_goal[4] = {0.0, 0.5, 0.5, 0.0};
+	float x_goal[4] = {0.22, 0.23, 0.26, 0.24};
+	float y_goal[4] = {0.0, 0, -0.04, -0.06};
+	float z_goal[4] = {0.0, 0.25, 0.25, 0.0};
 	while (ros::ok())
 	{
 		for (int i = 0; i < 4; i ++)

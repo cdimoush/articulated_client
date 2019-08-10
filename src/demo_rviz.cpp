@@ -27,7 +27,7 @@ DemoVizualizer::DemoVizualizer()
 
 	//Create TF
 	tf::Transform tf_block;
-  	tf_block.setOrigin(tf::Vector3(x_block, y_block, z_block + 0.5*d_block) );
+  	tf_block.setOrigin(tf::Vector3(x_block, y_block, z_block));
   	tf::Quaternion q;
   	q.setRPY(0, 0, 0);
   	tf_block.setRotation(q);
