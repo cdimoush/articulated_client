@@ -6,6 +6,7 @@
 #include "gripper_client.h"
 #include <tf/transform_listener.h>
 #include "geometry_msgs/Pose.h"
+#include "std_msgs/Empty.h"
 
 
 class DemoClient
@@ -15,7 +16,7 @@ public:
 
 private:
 	//FUNCTIONS
-	bool grabBlock();
+	bool grabBlock(tf::StampedTransform b_tf);
 	bool depositBlock();
 	bool checkObstacle();
 	bool moveRobot(articulated_client::ikGoal goal);
@@ -23,6 +24,7 @@ private:
 
 	//OBJECTS
 	ros::NodeHandle nh_;
+	ros::Publisher destroy_pub_;
 	
 	GripperClient gc_; //Custom client w/ premade methods
 
@@ -32,5 +34,6 @@ private:
 	//VARS
 	bool gripper_state_;
 	tf::StampedTransform world_robot_transform_; //Used to put goals in robot perspective
+
 
 };
